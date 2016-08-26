@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <title>Offline file upload</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <form>
+        <input type="file" id="fileInput" multiple>
+        <label for="fileInput">Select image</label>
+
+        <button id="syncButton">Request single sync</button>
+        <button id="syncPeriodicButton">Setup periodic sync (not supported yet)</button>
+    </form>
+
+    <div id="log"></div>
+
+    <div id="imageList"></div>
+
+</body>
+<script src="index.js"></script>
+</html>
