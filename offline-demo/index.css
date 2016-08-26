@@ -4,8 +4,14 @@ body {
 
 img {
     display: block;
-    max-width: 600px;
+    max-width: 90%;
     margin: 1em auto;
+}
+
+@media only screen and (min-width : 640px) {
+    img {
+        max-width: 600px;
+    }
 }
 
 input {
@@ -17,9 +23,17 @@ input {
 label, button {
     border: 0;
     display: inline-block;
-    font-size: 1.5em;
     color: #fff;
     background: #5555ff;
-    padding: 1em;
-    margin-right: 2em;
+    font-size: 1em;
+    padding: 0.25em;
+    margin-right: 1em;
+}
+
+@media only screen and (min-width : 640px) {
+    label, button {
+        font-size: 1.5em;
+        padding: 1em;
+        margin-right: 2em;
+    }
 }

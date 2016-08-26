@@ -91,6 +91,7 @@ function setupPeriodicSync(event) {
 }
 
 function addEventListeners() {
+    // Buttons
     var input = document.getElementById("fileInput");
     input.addEventListener("change", handleFileSelect);
 
@@ -101,8 +102,17 @@ function addEventListeners() {
     syncPeriodicButton.addEventListener("click", setupPeriodicSync);
 
 
+    // Network information
     window.addEventListener('online', networkOnline);
     window.addEventListener('offline', networkOffline);
+
+    // Network type - Chrome on Android
+    if ('connection' in navigator) {
+        navigator.connection.addEventListener('typechange', function(e) {
+            var networkInfo = e.target;
+            log("Connection type: " + networkInfo.type);
+        });
+    }
 }
 
 function handleFileSelect(e) {
