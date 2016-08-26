@@ -7,7 +7,7 @@ registerBackgroundSyncSW();
 
 function registerOfflineSW() {
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('serviceworkers/offline-sw.js', { scope: '/html5offline/' })
+        navigator.serviceWorker.register('serviceworkers/offline-sw.js', { scope: '/offlinedemo/' })
             .catch(function(error) {
                 alert('ServiceWorker failed to register. Are you visiting the HTTPS site?');
                 console.log(error.message);
@@ -17,7 +17,7 @@ function registerOfflineSW() {
 
 function registerBackgroundSyncSW() {
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('serviceworkers/backgroundsync-sw.js', { scope: '/html5offline/' })
+        navigator.serviceWorker.register('serviceworkers/backgroundsync-sw.js', { scope: '/offlinedemo/' })
             .catch(function(error) {
                 alert('ServiceWorker failed to register. Are you visiting the HTTPS site?');
                 console.log(error.message);
