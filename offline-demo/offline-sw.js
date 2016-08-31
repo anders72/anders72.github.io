@@ -12,3 +12,20 @@ self.addEventListener('install', function(event) {
         })
     );
 });
+
+
+self.addEventListener('fetch', function(event) {
+    event.respondWith(
+        caches.match(event.request)
+            .then(function(response) {
+                if (response) {
+                    console.log('[fetch] Returning from Service Worker cache: ',event.request.url);
+                    return response;
+                } else {
+                    console.log('[fetch] Returning from server: ', event.request.url);
+                    return fetch(event.request);
+                }
+            }
+            )
+    );
+});
