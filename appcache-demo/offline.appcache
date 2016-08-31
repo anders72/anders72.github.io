@@ -1,0 +1,12 @@
+CACHE MANIFEST
+# v6
+index.html
+index.css
+
+# Hent fra nettverk alltid
+NETWORK:
+/api
+
+# Fallback innhold
+FALLBACK:
+online.html offline.html

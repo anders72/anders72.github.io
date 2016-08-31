@@ -1,0 +1,14 @@
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+a {
+    border: 0;
+    display: inline-block;
+    color: #fff;
+    background: #5555ff;
+    font-size: 2em;
+    padding: 1em;
+    text-decoration: none;
+}
+
