@@ -3,6 +3,7 @@ var db;
 createDataBase();
 addEventListeners();
 registerBackgroundSyncSW();
+registerOfflineSW();
 
 
 function registerOfflineSW() {

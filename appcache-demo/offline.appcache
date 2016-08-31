@@ -3,11 +3,9 @@ CACHE MANIFEST
 index.html
 index.css
 
-# Hent fra nettverk alltid
 NETWORK:
-#/api
+/api
 online.html
 
-# Fallback innhold
 FALLBACK:
 online.html offline.html
