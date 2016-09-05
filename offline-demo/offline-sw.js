@@ -1,10 +1,12 @@
 // Only supported in Chrome
 // https://wicg.github.io/BackgroundSync/spec/
 
+var version = "v3";
+
 self.addEventListener('install', function(event) {
     console.log("Installing service worker for offline");
     event.waitUntil(
-        caches.open('offline-demo-v2').then(function(cache) {
+        caches.open("offline-demo-" + version).then(function(cache) {
             return cache.addAll([
                 '/offline-demo/',
                 '/offline-demo/index.css',
@@ -19,10 +21,10 @@ self.addEventListener('fetch', function(event) {
         caches.match(event.request)
             .then(function(response) {
                     if (response) {
-                        console.log('Fetching from cache',event.request.url);
+                        console.log("Fetching from cache:", event.request.url);
                         return response;
                     } else {
-                        console.log('Fetching from server: ', event.request.url);
+                        console.log("Fetching from server:", event.request.url);
                         return fetch(event.request);
                     }
                 }
@@ -31,11 +33,14 @@ self.addEventListener('fetch', function(event) {
 });
 
 self.addEventListener('activate', function(event) {
+    console.log("Service worker activating");
+    self.clients.claim();
+
     event.waitUntil(
         caches.keys().then(function(cacheNames) {
             return Promise.all(
                 cacheNames.map(function(cacheName) {
-                    if (cacheName !== "offline-demo-v2") {
+                    if (cacheName !== "offline-demo-" + version) {
                         return caches.delete(cacheName);
                     }
                 })
