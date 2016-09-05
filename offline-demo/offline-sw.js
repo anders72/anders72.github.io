@@ -1,7 +1,7 @@
 // Only supported in Chrome
 // https://wicg.github.io/BackgroundSync/spec/
 
-var version = "v3";
+var version = "v4";
 
 self.addEventListener('install', function(event) {
     console.log("Installing service worker for offline");
@@ -97,7 +97,7 @@ function notifyClients() {
         for (var i = 0; i < clientList.length; i++) {
             var client = clientList[i];
             console.log("Notifying client");
-            client.postMessage("ok");
+            client.postMessage("update");
         }
     });
 }

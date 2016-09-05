@@ -14,8 +14,11 @@ function registerServiceWorker() {
         });
 
         navigator.serviceWorker.addEventListener('message', function(event){
-            log("Service worker has sent us a message");
-            displayLocalFiles();
+            var message = event.data;
+            log("Service worker has sent us a message:" + message);
+            if (message == "update") {
+                displayLocalFiles();
+            }
         });
     }
 }
