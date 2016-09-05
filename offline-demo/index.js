@@ -2,34 +2,24 @@ var db;
 
 createDataBase();
 addEventListeners();
-registerBackgroundSyncSW();
-registerOfflineSW();
+registerServiceWorker();
 
 
-function registerOfflineSW() {
+function registerServiceWorker() {
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('offline-sw.js', { scope: '/offline-demo/' })
             .catch(function(error) {
-                alert('ServiceWorker failed to register. Are you visiting the HTTPS site?');
                 console.log(error.message);
-            });
-    }
-}
 
-function registerBackgroundSyncSW() {
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('backgroundsync-sw.js', { scope: '/offline-demo/' })
-            .catch(function(error) {
-                alert('ServiceWorker failed to register. Are you visiting the HTTPS site?');
-                console.log(error.message);
-            });
+        });
 
         navigator.serviceWorker.addEventListener('message', function(event){
-            log("Service worker has finished syncing");
+            log("Service worker has sent us a message");
             displayLocalFiles();
         });
     }
 }
+
 
 function log(logMessage) {
     var log = document.getElementById("log");
@@ -48,8 +38,8 @@ function performSingleSync(event) {
                     .then(function() {
                         log("Sync registered");
                     }).catch(function(error) {
-                    log("Setup sync failed");
-                });
+                        log("Setup sync failed");
+                    });
             } else {
                 // Sync not supported
                 log("Browser does not support sync");
@@ -74,15 +64,14 @@ function setupPeriodicSync(event) {
                     powerState: 'auto',
                     networkState: 'any'
                 }).then(function(event){
-                    log("Periodic sync was registered");
+                    console.log("Periodic sync was registered");
                 }).catch(function(error) {
-                    log("Setup periodic sync failed");
+                    console.log("Setup periodic sync failed");
                 });
             } else {
                 // Sync not supported
                 log("Browser does not support sync");
             }
-
         });
     } else {
         // Sync without service worker
